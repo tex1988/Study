@@ -1,0 +1,38 @@
+package com.home.SerializationTask;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+
+public class SerializationTask11 implements Serializable, Runnable {
+    transient private Thread runner;
+    private int speed;
+
+    public SerializationTask11 (int speed) {
+        this.speed = speed;
+        runner = new Thread(this);
+        runner.start();
+    }
+
+    public void run() {
+        // do something here, does not matter
+    }
+
+    /**
+     Переопределяем сериализацию.
+     Для этого необходимо объявить методы:
+     private void writeObject(ObjectOutputStream out) throws IOException
+     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException
+     Теперь сериализация/десериализация пойдет по нашему сценарию :)
+     */
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+        Thread runner = new Thread(this);
+        runner.start();
+    }
+}
