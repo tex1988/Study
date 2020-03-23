@@ -52,7 +52,7 @@ public class CrudTask {
 
         try {
             if (f.exists()) {
-                FileInputStream fis = new FileInputStream("C:/Users/Tex88/Desktop/list.ser");
+                FileInputStream fis = new FileInputStream("C:/Users/Tex/Desktop/list.ser");
                 ObjectInputStream ois = new ObjectInputStream(fis);
                 list = (ArrayList<Person>) ois.readObject();
                 ois.close();
@@ -66,7 +66,7 @@ public class CrudTask {
         if (args[0].equals("c") || args[0].equals("d") || args[0].equals("u"))
         {
             try {
-                FileOutputStream fos = new FileOutputStream("C:/Users/Tex88/Desktop/list.ser");
+                FileOutputStream fos = new FileOutputStream("C:/Users/Tex/Desktop/list.ser");
                 ObjectOutputStream oos = new ObjectOutputStream(fos);
                 oos.writeObject(list);
                 oos.close();
